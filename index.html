@@ -95,45 +95,72 @@ nav{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:20px 48px;displa
 .skill-bar{height:3px;background:rgba(255,255,255,0.07);border-radius:2px;overflow:hidden;}
 .skill-fill{height:100%;background:linear-gradient(90deg,var(--cyan),var(--pink));border-radius:2px;width:0;transition:width 1.6s cubic-bezier(0.25,0.46,0.45,0.94);}
 
-/* ====== PORTFOLIO ====== */
+/* ====== PORTFOLIO / WORK ====== */
 #portfolio{padding:100px 6vw;position:relative;overflow:hidden;}
-.section-header{text-align:center;margin-bottom:64px;}
+.section-header{text-align:center;margin-bottom:48px;}
 .section-header .section-label{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--cyan);margin-bottom:14px;}
 .section-header h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,7vw,100px);line-height:.9;}
 .section-header p{font-size:13px;color:rgba(255,255,255,0.35);margin-top:12px;letter-spacing:1px;}
 
-#projects-field{position:relative;width:100%;height:700px;}
-@media(max-width:768px){#projects-field{height:auto;display:grid;grid-template-columns:1fr 1fr;gap:16px;}}
-@media(max-width:480px){#projects-field{grid-template-columns:1fr;}}
+/* TABS */
+.work-tabs{display:flex;gap:12px;justify-content:center;margin-bottom:52px;flex-wrap:wrap;}
+.work-tab{padding:11px 26px;border-radius:28px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.5);font-family:'DM Sans',sans-serif;font-size:12px;letter-spacing:1px;cursor:pointer;transition:all .3s;}
+.work-tab:hover{border-color:rgba(0,229,204,0.3);color:rgba(255,255,255,0.8);}
+.work-tab.active{background:rgba(0,229,204,0.12);border-color:rgba(0,229,204,0.5);color:var(--cyan);}
+.work-panel{display:none;}
+.work-panel.active{display:block;}
 
-.project-orb{position:absolute;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;text-align:center;transition:transform .3s ease,box-shadow .3s ease;animation:orbFloat ease-in-out infinite;border:1px solid rgba(255,255,255,0.1);overflow:hidden;}
-.project-orb::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 32% 28%,rgba(255,255,255,0.28),transparent 58%);border-radius:50%;pointer-events:none;}
-.project-orb:hover{transform:scale(1.1)!important;z-index:10;}
-.orb-inner{padding:16px;z-index:1;position:relative;}
-.orb-num{font-size:9px;letter-spacing:3px;color:rgba(255,255,255,0.35);margin-bottom:5px;}
-.orb-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(14px,2.5vw,19px);letter-spacing:1px;color:#fff;line-height:1.1;}
-.orb-type{font-size:9px;color:rgba(255,255,255,0.45);margin-top:5px;letter-spacing:2px;text-transform:uppercase;}
-@keyframes orbFloat{0%,100%{margin-top:0}50%{margin-top:-14px}}
+/* THUMBNAILS */
+.thumb-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+@media(max-width:900px){.thumb-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:540px){.thumb-grid{grid-template-columns:1fr;}}
+.thumb-card{border-radius:14px;overflow:hidden;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);cursor:pointer;transition:transform .3s,box-shadow .3s;}
+.thumb-card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,229,204,0.15);}
+.thumb-img-wrap{position:relative;aspect-ratio:16/9;overflow:hidden;background:#111;}
+.thumb-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;}
+.thumb-card:hover .thumb-img-wrap img{transform:scale(1.05);}
+.thumb-overlay{position:absolute;inset:0;background:rgba(5,5,8,0.5);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s;}
+.thumb-card:hover .thumb-overlay{opacity:1;}
+.thumb-play{font-size:36px;}
+.thumb-info{padding:14px 16px;}
+.thumb-label{font-size:13px;font-weight:500;color:var(--white);}
+.thumb-tag{font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:1px;margin-top:4px;}
 
-/* Mobile orbs */
-@media(max-width:768px){
-  .project-orb{position:static!important;width:100%!important;height:160px!important;border-radius:16px!important;animation:none!important;}
-  .project-orb::before{border-radius:16px!important;}
-}
+/* SHORTS */
+.shorts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+@media(max-width:900px){.shorts-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:540px){.shorts-grid{grid-template-columns:1fr;}}
+.short-card{border-radius:14px;overflow:hidden;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);}
+.short-video-wrap{position:relative;aspect-ratio:9/16;background:#0a0a0f;overflow:hidden;}
+.short-video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:none;}
+.short-info{padding:14px 16px;}
+.short-label{font-size:13px;font-weight:500;color:var(--white);}
+.short-tag{font-size:10px;color:rgba(0,229,204,0.6);letter-spacing:1px;margin-top:4px;}
 
-#project-modal{position:fixed;inset:0;background:rgba(5,5,8,0.93);z-index:2000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .4s;backdrop-filter:blur(12px);}
-#project-modal.open{opacity:1;pointer-events:all;}
-.modal-inner{max-width:660px;width:90%;background:rgba(255,255,255,0.04);border:1px solid rgba(0,229,204,0.2);border-radius:20px;padding:44px;position:relative;transform:translateY(40px);transition:transform .4s cubic-bezier(0.25,0.46,0.45,0.94);}
-#project-modal.open .modal-inner{transform:translateY(0);}
-.modal-close{position:absolute;top:18px;right:22px;background:none;border:none;color:rgba(255,255,255,0.35);font-size:22px;cursor:pointer;transition:color .2s;}
-.modal-close:hover{color:#fff;}
-.modal-cat{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--cyan);margin-bottom:10px;}
-.modal-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,52px);margin-bottom:16px;line-height:1;}
-.modal-desc{font-size:13px;line-height:1.85;color:rgba(240,236,228,0.55);margin-bottom:24px;}
-.modal-pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px;}
-.modal-pill{padding:4px 14px;border-radius:20px;background:rgba(0,229,204,0.07);border:1px solid rgba(0,229,204,0.2);font-size:11px;letter-spacing:1px;color:var(--cyan);}
-.modal-cta{display:inline-flex;align-items:center;gap:8px;padding:12px 26px;border-radius:28px;border:1px solid rgba(0,229,204,0.4);color:var(--cyan);font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:all .3s;}
-.modal-cta:hover{background:rgba(0,229,204,0.1);box-shadow:0 0 28px rgba(0,229,204,0.2);}
+/* LONG FORM */
+.long-grid{display:grid;grid-template-columns:1fr;gap:28px;}
+.long-card{display:grid;grid-template-columns:1.6fr 1fr;gap:28px;align-items:center;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px;overflow:hidden;padding:0;transition:border-color .3s;}
+.long-card:hover{border-color:rgba(0,229,204,0.2);}
+@media(max-width:768px){.long-card{grid-template-columns:1fr;}}
+.long-video-wrap{position:relative;aspect-ratio:16/9;background:#0a0a0f;overflow:hidden;}
+.long-video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:none;}
+.long-info{padding:28px 28px 28px 0;}
+@media(max-width:768px){.long-info{padding:20px;}}
+.long-label{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--white);margin-bottom:10px;}
+.long-desc{font-size:13px;line-height:1.75;color:rgba(240,236,228,0.5);margin-bottom:16px;}
+.long-tags{display:flex;gap:8px;flex-wrap:wrap;}
+.lpill{padding:4px 12px;border-radius:16px;background:rgba(0,229,204,0.07);border:1px solid rgba(0,229,204,0.18);font-size:10px;letter-spacing:1px;color:var(--cyan);}
+
+/* WORK CTA */
+.work-cta{text-align:center;margin-top:64px;padding-top:48px;border-top:1px solid rgba(255,255,255,0.06);}
+.work-cta p{font-size:13px;color:rgba(255,255,255,0.35);letter-spacing:2px;margin-bottom:20px;text-transform:uppercase;}
+
+/* LIGHTBOX */
+#lightbox{position:fixed;inset:0;background:rgba(5,5,8,0.96);z-index:3000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(16px);}
+#lightbox.open{opacity:1;pointer-events:all;}
+.lb-inner{position:relative;width:90%;max-width:900px;max-height:90vh;display:flex;align-items:center;justify-content:center;}
+.lb-close{position:fixed;top:24px;right:28px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:#fff;font-size:18px;width:40px;height:40px;border-radius:50%;cursor:pointer;transition:all .2s;z-index:10;}
+.lb-close:hover{background:rgba(0,229,204,0.15);border-color:var(--cyan);}
 
 /* ====== SERVICES ====== */
 #services{padding:100px 6vw;position:relative;}
@@ -267,24 +294,121 @@ footer{padding:32px 6vw;border-top:1px solid rgba(255,255,255,0.05);display:flex
 
 <div class="divider"></div>
 
-<!-- PORTFOLIO -->
+<!-- PORTFOLIO / WORK -->
 <section id="portfolio">
   <div class="section-header reveal">
     <div class="section-label">Selected Work</div>
-    <h2>MY PROJECTS</h2>
-    <p>Click any project to explore the full work</p>
+    <h2>MY WORK</h2>
+    <p>Thumbnails · Shorts & Reels · Long-Form Videos</p>
   </div>
-  <div id="projects-field"></div>
+
+  <!-- TAB SWITCHER -->
+  <div class="work-tabs reveal">
+    <button class="work-tab active" data-tab="thumbnails">🖼 Thumbnails</button>
+    <button class="work-tab" data-tab="shorts">⚡ Shorts & Reels</button>
+    <button class="work-tab" data-tab="longform">🎬 Long Videos</button>
+  </div>
+
+  <!-- THUMBNAILS -->
+  <div class="work-panel active" id="tab-thumbnails">
+    <div class="thumb-grid">
+      <div class="thumb-card reveal" onclick="openLightbox('1HYsseZHDKaEQ6CvONzODEP_499Bi8rjB','image')">
+        <div class="thumb-img-wrap">
+          <img src="https://drive.google.com/thumbnail?id=1HYsseZHDKaEQ6CvONzODEP_499Bi8rjB&sz=w800" alt="Thumbnail 1" loading="lazy"/>
+          <div class="thumb-overlay"><span class="thumb-play">🔍</span></div>
+        </div>
+        <div class="thumb-info"><div class="thumb-label">Thumbnail Design 01</div><div class="thumb-tag">Click to Preview</div></div>
+      </div>
+      <div class="thumb-card reveal" onclick="openLightbox('1Ev3iqsFiEsiKdyc9mS5NAgIFr0SKzTpX','image')">
+        <div class="thumb-img-wrap">
+          <img src="https://drive.google.com/thumbnail?id=1Ev3iqsFiEsiKdyc9mS5NAgIFr0SKzTpX&sz=w800" alt="Thumbnail 2" loading="lazy"/>
+          <div class="thumb-overlay"><span class="thumb-play">🔍</span></div>
+        </div>
+        <div class="thumb-info"><div class="thumb-label">Thumbnail Design 02</div><div class="thumb-tag">Click to Preview</div></div>
+      </div>
+      <div class="thumb-card reveal" onclick="openLightbox('1JG0YmmVIUZjYK76hsK-sXCXhyeF5fiX4','image')">
+        <div class="thumb-img-wrap">
+          <img src="https://drive.google.com/thumbnail?id=1JG0YmmVIUZjYK76hsK-sXCXhyeF5fiX4&sz=w800" alt="Thumbnail 3" loading="lazy"/>
+          <div class="thumb-overlay"><span class="thumb-play">🔍</span></div>
+        </div>
+        <div class="thumb-info"><div class="thumb-label">Thumbnail Design 03</div><div class="thumb-tag">Click to Preview</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHORTS & REELS -->
+  <div class="work-panel" id="tab-shorts">
+    <div class="shorts-grid">
+      <div class="short-card reveal">
+        <div class="short-video-wrap">
+          <iframe src="https://drive.google.com/file/d/1asngfeF1O1IE9hl3dnTRjpO_TNszYMnv/preview" allowfullscreen allow="autoplay"></iframe>
+        </div>
+        <div class="short-info"><div class="short-label">Short / Reel 01</div><div class="short-tag">CapCut · Reels</div></div>
+      </div>
+      <div class="short-card reveal">
+        <div class="short-video-wrap">
+          <iframe src="https://drive.google.com/file/d/1ZJUTPzoZWiKhvInQOqfzLwhitRNLRFX9/preview" allowfullscreen allow="autoplay"></iframe>
+        </div>
+        <div class="short-info"><div class="short-label">Short / Reel 02</div><div class="short-tag">CapCut · YouTube Shorts</div></div>
+      </div>
+      <div class="short-card reveal">
+        <div class="short-video-wrap">
+          <iframe src="https://drive.google.com/file/d/1XezZHJ3af0K_DmkmjAI4hRprco5dGwIJ/preview" allowfullscreen allow="autoplay"></iframe>
+        </div>
+        <div class="short-info"><div class="short-label">Short / Reel 03</div><div class="short-tag">Filmora · Instagram</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LONG FORM -->
+  <div class="work-panel" id="tab-longform">
+    <div class="long-grid">
+      <div class="long-card reveal">
+        <div class="long-video-wrap">
+          <iframe src="https://drive.google.com/file/d/1aNNux0GDIyIKFMC-bLZ8jo9gjuxFoX4v/preview" allowfullscreen allow="autoplay"></iframe>
+        </div>
+        <div class="long-info">
+          <div class="long-label">Long-Form Video 01</div>
+          <div class="long-desc">Full YouTube edit — colour graded, music synced, transitions and lower thirds.</div>
+          <div class="long-tags"><span class="lpill">Premiere Pro</span><span class="lpill">Colour Grading</span></div>
+        </div>
+      </div>
+      <div class="long-card reveal">
+        <div class="long-video-wrap">
+          <iframe src="https://drive.google.com/file/d/1zyzHA98XNYkQN-iqq3MWbOvZx8KpQvz_/preview" allowfullscreen allow="autoplay"></iframe>
+        </div>
+        <div class="long-info">
+          <div class="long-label">Long-Form Video 02</div>
+          <div class="long-desc">Cinematic vlog edit with atmospheric pacing and sound design.</div>
+          <div class="long-tags"><span class="lpill">DaVinci Resolve</span><span class="lpill">Sound Design</span></div>
+        </div>
+      </div>
+      <div class="long-card reveal">
+        <div class="long-video-wrap">
+          <iframe src="https://drive.google.com/file/d/1LoKU_abfk5PQIyM5Cj33Q-hD31xo18ml/preview" allowfullscreen allow="autoplay"></iframe>
+        </div>
+        <div class="long-info">
+          <div class="long-label">Long-Form Video 03</div>
+          <div class="long-desc">Brand content — polished storytelling with custom motion graphics.</div>
+          <div class="long-tags"><span class="lpill">After Effects</span><span class="lpill">Motion Graphics</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="work-cta reveal">
+    <p>Like what you see?</p>
+    <a href="#contact" class="hero-btn hero-btn-primary" style="display:inline-block;text-decoration:none;">Get In Touch →</a>
+  </div>
 </section>
 
-<div id="project-modal">
-  <div class="modal-inner">
-    <button class="modal-close" id="modal-close">✕</button>
-    <div class="modal-cat" id="modal-cat"></div>
-    <div class="modal-title" id="modal-title"></div>
-    <div class="modal-desc" id="modal-desc"></div>
-    <div class="modal-pills" id="modal-pills"></div>
-    <a href="#" class="modal-cta" id="modal-cta" target="_blank">View Project →</a>
+<!-- LIGHTBOX for thumbnails -->
+<div id="lightbox" onclick="closeLightbox()">
+  <div class="lb-inner">
+    <button class="lb-close" onclick="closeLightbox()">✕</button>
+    <iframe id="lb-frame" src="" allowfullscreen style="width:100%;height:100%;border:none;border-radius:12px;display:none;"></iframe>
+    <img id="lb-img" src="" alt="" style="max-width:100%;max-height:80vh;border-radius:12px;display:none;object-fit:contain;"/>
   </div>
 </div>
 
@@ -475,49 +599,39 @@ document.getElementById('hamburger').addEventListener('click',function(){
   requestAnimationFrame(animate);
 })();
 
-// PROJECTS
-const projects=[
-  {num:'01',title:'YouTube Long-Form Edit',type:'YouTube Editing',desc:'End-to-end editing for a YouTube creator — raw footage transformed into a polished long-form video with smooth transitions, custom lower thirds, colour grading, and music sync for maximum watch retention.',tags:['Premiere Pro','Colour Grading','YouTube'],link:'#',c1:'#6633cc',c2:'#1a0a3f'},
-  {num:'02',title:'Instagram Reel Series',type:'Reels & Short-Form',desc:'A series of high-energy Instagram Reels for a content creator — trending transitions, punchy cuts, dynamic text overlays, and sound effects built for algorithm engagement and viral reach.',tags:['CapCut','Sound Design','Reels'],link:'#',c1:'#FF70C0',c2:'#2a0a1a'},
-  {num:'03',title:'Showreel 2024',type:'Portfolio Showreel',desc:'My personal showreel compiling the best moments from 2024 — showcasing editing range across genres including vlog, cinematic and short-form content. Designed to impress at first frame.',tags:['Premiere Pro','After Effects','Colour Grading'],link:'https://imprajan.github.io/pratinav.github.io/',c1:'#00C4FF',c2:'#0a1a2a'},
-  {num:'04',title:'Cinematic Vlog Edit',type:'Travel / Vlog',desc:'Cinematic travel vlog edited with carefully paced cuts, atmospheric colour grade, and a thoughtfully chosen music soundtrack. Storytelling-first approach that brings the journey to life.',tags:['DaVinci Resolve','Colour Grading','Sound Design'],link:'#',c1:'#FF9F1C',c2:'#1a0f00'},
-  {num:'05',title:'YouTube Shorts Pack',type:'Shorts Editing',desc:'A batch of YouTube Shorts edited for a gaming channel — fast-paced cuts, captions, and audio tuned for the Shorts feed format to maximise impressions and subscriber growth.',tags:['Filmora','CapCut','YouTube'],link:'#',c1:'#43E97B',c2:'#051a10'},
-  {num:'06',title:'Music Video Cut',type:'Music Video',desc:'Beat-synced music video editing with dynamic colour grading, VFX transitions, and lyric overlays. Cinematic storytelling matched perfectly to every beat and drop in the track.',tags:['Premiere Pro','After Effects','Motion Graphics'],link:'#',c1:'#FF4D6D',c2:'#1a0008'},
-];
-
-const POSITIONS=[{x:8,y:10},{x:35,y:5},{x:62,y:12},{x:18,y:50},{x:47,y:55},{x:72,y:45}];
-
-(function(){
-  const field=document.getElementById('projects-field');
-  const isMobile=window.innerWidth<=768;
-  projects.forEach((p,i)=>{
-    const size=isMobile?undefined:Math.random()*50+170;
-    const pos=POSITIONS[i];
-    const orb=document.createElement('div');
-    orb.className='project-orb';
-    if(!isMobile){
-      orb.style.cssText=`width:${size}px;height:${size}px;left:${pos.x}%;top:${pos.y}%;background:radial-gradient(circle at 35% 30%,${p.c1}99,${p.c2}ee);animation-duration:${4+i*.8}s;animation-delay:-${i*1.1}s;box-shadow:0 0 50px ${p.c1}44;`;
-    } else {
-      orb.style.cssText=`background:radial-gradient(circle at 35% 30%,${p.c1}99,${p.c2}ee);box-shadow:0 0 30px ${p.c1}33;`;
-    }
-    orb.innerHTML=`<div class="orb-inner"><div class="orb-num">${p.num}</div><div class="orb-title">${p.title}</div><div class="orb-type">${p.type}</div></div>`;
-    orb.addEventListener('click',()=>openModal(p));
-    field.appendChild(orb);
+// WORK TABS
+document.querySelectorAll('.work-tab').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    document.querySelectorAll('.work-tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.work-panel').forEach(p=>p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('tab-'+tab.dataset.tab).classList.add('active');
   });
-})();
+});
 
-function openModal(p){
-  document.getElementById('modal-cat').textContent=p.type;
-  document.getElementById('modal-title').textContent=p.title;
-  document.getElementById('modal-desc').textContent=p.desc;
-  document.getElementById('modal-pills').innerHTML=p.tags.map(t=>`<span class="modal-pill">${t}</span>`).join('');
-  const cta=document.getElementById('modal-cta');
-  cta.href=p.link;cta.style.display=p.link==='#'?'none':'inline-flex';
-  document.getElementById('project-modal').classList.add('open');
+// LIGHTBOX
+function openLightbox(id, type){
+  const lb=document.getElementById('lightbox');
+  const frame=document.getElementById('lb-frame');
+  const img=document.getElementById('lb-img');
+  if(type==='video'){
+    frame.src=`https://drive.google.com/file/d/${id}/preview`;
+    frame.style.display='block';img.style.display='none';
+    frame.style.height='70vh';
+  } else {
+    img.src=`https://drive.google.com/thumbnail?id=${id}&sz=w1200`;
+    img.style.display='block';frame.style.display='none';
+    frame.src='';
+  }
+  lb.classList.add('open');
   document.body.style.overflow='hidden';
 }
-document.getElementById('modal-close').addEventListener('click',()=>{document.getElementById('project-modal').classList.remove('open');document.body.style.overflow='';});
-document.getElementById('project-modal').addEventListener('click',e=>{if(e.target===e.currentTarget){e.currentTarget.classList.remove('open');document.body.style.overflow='';}});
+function closeLightbox(){
+  document.getElementById('lightbox').classList.remove('open');
+  document.getElementById('lb-frame').src='';
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
 
 // REVEAL
 const ro=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*90);ro.unobserve(e.target);}});},{threshold:0.12});
